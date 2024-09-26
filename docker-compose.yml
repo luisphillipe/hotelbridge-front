@@ -1,0 +1,13 @@
+version: '3'
+services:
+  angular-app:
+    image: node:18-alpine  # Usa a imagem do Node.js
+    working_dir: /app
+    volumes:
+      - .:/app  # Mapeia a pasta do projeto local para o container
+      - /app/node_modules  # Mantém os node_modules persistentes
+    ports:
+      - "4200:4200"  # Mapeia a porta 4200 do container para a porta 4200 do host
+    command: >
+      sh -c "npm install && npx ng serve --host 0.0.0.0"
+    container_name: hotelbridge-frontend
